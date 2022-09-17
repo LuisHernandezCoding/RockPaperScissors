@@ -70,4 +70,6 @@ function game(gamesQuantity){
                   (playerScore < computerScore) ? 'Loose' : 'Draw'
     console.log(finalResult)
 }
-game(3)
+
+const chalkboard = document.querySelector('.chalkboard')
+console.log(chalkboard)
