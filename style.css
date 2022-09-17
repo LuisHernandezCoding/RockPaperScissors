@@ -28,7 +28,17 @@ div#container {
 .border {
     border: 8px #f0f8ff6b dotted;
 }
-.chalkboard {
+h1.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    font-size: 50px;
+}
+h1.title img.logo {
+    width: 100px;
+}
+#chalkboard {
     background-image: url(./images/chalkboard2.jpg);
     background-size: 98% 97%;
     background-position: center;
@@ -38,11 +48,12 @@ div#container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    transition: all ease .1s;
 }
-.chalkboard h2.title {
+#chalkboard h2.title {
     font-size: 40px;
 }
-.chalkboard .buttons {
+#chalkboard .buttons {
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -56,7 +67,7 @@ div#container {
     text-align: center;
     margin-top: 10px;
 }
-.chalkboard button {
+#chalkboard button {
     background: #3372459e;
     border-style: dashed;
     border-color: bisque;
@@ -66,29 +77,44 @@ div#container {
     color: white;
     font-family: inherit;
     font-size: 23px;
-    transition: ease 0.1s;
+    transition: all ease .1s;
 }
-.chalkboard button.authorize {
+
+#chalkboard button.neutral {
+    background: rgb(47, 179, 255);
+    color: rgb(0, 63, 100);
+}
+#chalkboard button.neutral:hover {
+    background: rgb(35, 149, 194);
+    color: rgb(0, 25, 54);
+}
+#chalkboard button.neutral:active {
+    background: rgb(7, 44, 49);
+    color: rgb(0, 0, 0);
+}
+
+#chalkboard button.authorize {
     background: greenyellow;
     color: darkgreen;
 }
-.chalkboard button.authorize:hover {
+#chalkboard button.authorize:hover {
     background: rgb(130, 194, 35);
     color: rgb(0, 54, 0);
 }
-.chalkboard button.authorize:active {
+#chalkboard button.authorize:active {
     background: rgb(33, 49, 7);
     color: rgb(0, 0, 0);
 }
-.chalkboard button.cancel {
+
+#chalkboard button.cancel {
     background: red;
     color: #6a0000;
 }
-.chalkboard button.cancel:hover {
+#chalkboard button.cancel:hover {
     background: rgb(156, 0, 0);
     color: #3a0000;
 }
-.chalkboard button.cancel:active {
+#chalkboard button.cancel:active {
     background: rgb(54, 0, 0);
     color: #000000;
 }

@@ -71,5 +71,37 @@ function game(gamesQuantity){
     console.log(finalResult)
 }
 
-const chalkboard = document.querySelector('.chalkboard')
-console.log(chalkboard)
+// Defining existing content
+const chalkboard = document.querySelector('#chalkboard')
+const title = chalkboard.firstElementChild
+const initialButtons = chalkboard.lastElementChild
+const btnStart = initialButtons.firstElementChild
+const btnCancel = initialButtons.lastElementChild
+
+// Adding listeners to existing buttons
+btnStart.addEventListener('click', StartGame)
+btnCancel.addEventListener('click', CancelGame)
+
+// Starting Game Function
+function StartGame(e){
+    console.log('ouch you clicked me')
+}
+// Function for restarting initial buttons
+function RestartInitialButtons(e) {
+    initialButtons.appendChild(btnCancel)
+    btnStart.classList.remove('neutral')
+    btnStart.classList.add('authorize')
+    btnStart.textContent = "Let's Go!"
+    title.textContent = 'Are you ready to play?'
+    StartGame(e)
+}
+// Cancel Game Function (before it starts)
+function CancelGame(e) {
+    title.textContent = 'Well, Take your time'
+    initialButtons.removeChild(btnCancel)
+    btnStart.classList.remove('authorize')
+    btnStart.classList.add('neutral')
+    btnStart.textContent = "I'm ready now!"
+    btnStart.removeEventListener('click', StartGame)
+    btnStart.addEventListener('click', RestartInitialButtons)
+}
