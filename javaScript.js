@@ -15,6 +15,7 @@ function getComputerChoice(){
     return (pickedNumber >= 67) ? choice = 'Rock' : 
     (pickedNumber <= 33) ? choice = 'Paper' : 'Scissors'
 }
+
 function Play(playerSelection, computerSelection){
     return (playerSelection === 'Rock' && 'Scissors' === computerSelection ||
     playerSelection === 'Paper' && 'Rock' === computerSelection ||
@@ -24,6 +25,7 @@ function Play(playerSelection, computerSelection){
     playerSelection === 'Scissors' && 'Rock' === computerSelection) ? 'Loose' :
     'Draw';
 }
+
 function setWinnerAndLooser(endState, playerSelection, computerSelection){
     if (endState === 'Win'){
         winner = playerSelection
@@ -82,10 +84,65 @@ const btnCancel = initialButtons.lastElementChild
 btnStart.addEventListener('click', StartGame)
 btnCancel.addEventListener('click', CancelGame)
 
+// Creating player choice buttons section
+const playerChoiceButtons = document.createElement('div')
+playerChoiceButtons.classList.add('buttons')
+const rockButton = document.createElement('button')
+rockButton.classList.add('rock', 'playerChoice')
+const paperButton = document.createElement('button')
+paperButton.classList.add('paper', 'playerChoice')
+const scissorsButton = document.createElement('button')
+scissorsButton.classList.add('scissors', 'playerChoice')
+playerChoiceButtons.appendChild(rockButton)
+playerChoiceButtons.appendChild(paperButton)
+playerChoiceButtons.appendChild(scissorsButton)
+const horizontalLine = document.createElement('div')
+horizontalLine.classList.add('horizontalLine', 'border')
+
+// Creating Scoreboard 
+const scoreboard = document.createElement('div')
+scoreboard.classList.add('scoreboard')
+//      Creating player score elements
+const playerScoreSquare = document.createElement('div')
+const playerScoreTitle = document.createElement('div')
+const playerScoreValue = document.createElement('div')
+//      Giving player score classes
+playerScoreSquare.classList.add('playerScore')
+playerScoreTitle.classList.add('title')
+playerScoreValue.classList.add('value')
+//      Giving player score values
+playerScoreTitle.textContent = 'Player Score:'
+playerScoreValue.textContent = playerScore
+//      Sticking all together
+playerScoreSquare.appendChild(playerScoreTitle)
+playerScoreSquare.appendChild(playerScoreValue)
+scoreboard.appendChild(playerScoreSquare)
+
+//      Creating computer score elements
+const cpuScoreSquare = document.createElement('div')
+const cpuScoreSquareTitle = document.createElement('div')
+const cpuScoreSquareValue = document.createElement('div')
+//      Giving computer score classes
+cpuScoreSquare.classList.add('cpuScore')
+cpuScoreSquareTitle.classList.add('title')
+cpuScoreSquareValue.classList.add('value')
+//      Giving computer score values
+cpuScoreSquareTitle.textContent = 'Computer Score:'
+cpuScoreSquareValue.textContent = computerScore
+//      Sticking all together
+cpuScoreSquare.appendChild(cpuScoreSquareTitle)
+cpuScoreSquare.appendChild(cpuScoreSquareValue)
+scoreboard.appendChild(cpuScoreSquare)
+
 // Starting Game Function
 function StartGame(e){
-    console.log('ouch you clicked me')
+    title.textContent = 'Ok, Lets go! Make a choice now!'
+    chalkboard.removeChild(initialButtons)
+    chalkboard.appendChild(playerChoiceButtons)
+    chalkboard.appendChild(horizontalLine)
+    chalkboard.appendChild(scoreboard)
 }
+
 // Function for restarting initial buttons
 function RestartInitialButtons(e) {
     initialButtons.appendChild(btnCancel)
@@ -93,7 +150,8 @@ function RestartInitialButtons(e) {
     btnStart.classList.add('authorize')
     btnStart.textContent = "Let's Go!"
     title.textContent = 'Are you ready to play?'
-    StartGame(e)
+    btnStart.removeEventListener('click', RestartInitialButtons)
+    btnStart.addEventListener('click', StartGame)
 }
 // Cancel Game Function (before it starts)
 function CancelGame(e) {
